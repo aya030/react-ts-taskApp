@@ -1,0 +1,19 @@
+{
+  "tasks": [
+    {
+      "id": "1",
+      "task": "ReactでTask管理アプリの作成",
+      "done": true
+    },
+    {
+      "id": "2",
+      "task": "ReactとTypeScriptの環境設定",
+      "done": true
+    },
+    {
+      "id": "3",
+      "task": "TypeScriptでアプリ作成",
+      "done": false
+    }
+  ]
+}
