@@ -24,7 +24,7 @@ npm start
 ```
 
 同時にモックサーバーを起動する
-`npx json-server --watch db.json --port 3100`
+`npx json-server --watch mock.json --port 3100`
 
 http://localhost:3100/tasks
 
