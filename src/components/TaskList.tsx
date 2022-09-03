@@ -12,9 +12,9 @@ export const TaskList = ({
   deleteTaskListItem: (id: string) => void;
 }) => {
   return (
-    <>
+    <div>
       {taskList.length !== 0 && (
-        <>
+        <div>
           <ul className="mt-4 mb-16">
             {taskList.map((task) => (
               <li key={task.id} className="mb-3">
@@ -27,8 +27,8 @@ export const TaskList = ({
               </li>
             ))}
           </ul>
-        </>
+        </div>
       )}
-    </>
+    </div>
   );
 };
