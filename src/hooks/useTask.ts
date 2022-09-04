@@ -18,7 +18,7 @@ export const useTask = () => {
     //ulid()で一意のIdを取得
     const newTaskItem = { id: ulid(), task: todoContent, done: false };
 
-    taskData.addTaskData(newTaskItem).then((addTask) => {
+    taskData.addTaskData(newTaskItem).((addTask:Task) => {
       setTaskList([addTask, ...taskList]);
     });
   };
