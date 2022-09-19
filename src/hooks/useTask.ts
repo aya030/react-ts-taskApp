@@ -8,9 +8,11 @@ export const useTask = () => {
   const [taskList, setTaskList] = useState<Task[]>([]);
 
   useEffect(() => {
-    taskData.getAllTaskData().then((task) => {
-      setTaskList([...task].reverse());
-    });
+    const allTaskData = async () => {
+      const data = await taskData.getAllTaskData();
+      setTaskList([...data].reverse());
+    };
+    allTaskData();
   }, []);
 
   // Taskの追加
@@ -18,7 +20,7 @@ export const useTask = () => {
     //ulid()で一意のIdを取得
     const newTaskItem = { id: ulid(), task: todoContent, done: false };
 
-    taskData.addTaskData(newTaskItem).then((addTask:Task) => {
+    taskData.addTaskData(newTaskItem).then((addTask: Task) => {
       setTaskList([addTask, ...taskList]);
     });
   };
