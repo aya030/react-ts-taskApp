@@ -20,27 +20,34 @@ export const useTask = () => {
     //ulid()で一意のIdを取得
     const newTaskItem = { id: ulid(), task: todoContent, done: false };
 
-    taskData.addTaskData(newTaskItem).then((addTask: Task) => {
-      setTaskList([addTask, ...taskList]);
-    });
+    const addTaskData = async () => {
+      const data = await taskData.addTaskData(newTaskItem);
+      setTaskList([data, ...taskList]);
+    };
+    addTaskData();
   };
 
   // 完了と未完了を反転させる
   const toggleTaskListItem = (id: string, done: boolean) => {
     const taskItem = taskList.find((item: Task) => item.id === id);
     const newTaskItem: Task = { ...taskItem!, done: !done };
-    taskData.updateTaskData(id, newTaskItem).then((updateTask) => {
-      const newTaskList = taskList.map((item) => (item.id !== updateTask.id ? item : updateTask));
+
+    const updateTaskData = async () => {
+      const data = await taskData.updateTaskData(id, newTaskItem);
+      const newTaskList = taskList.map((item) => (item.id !== data.id ? item : data));
       setTaskList(newTaskList);
-    });
+    };
+    updateTaskData();
   };
 
   //Taskの削除
   const deleteTaskListItem = (id: string) => {
-    taskData.deleteTaskData(id).then((deleteId) => {
-      const newTaskList = taskList.filter((item) => item.id !== deleteId);
+    const deleteTaskData = async () => {
+      const data = await taskData.deleteTaskData(id);
+      const newTaskList = taskList.filter((item) => item.id !== data);
       setTaskList(newTaskList);
-    });
+    };
+    deleteTaskData();
   };
 
   return { taskList, toggleTaskListItem, addTaskListItem, deleteTaskListItem };
