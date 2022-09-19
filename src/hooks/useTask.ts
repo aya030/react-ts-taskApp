@@ -14,11 +14,11 @@ export const useTask = () => {
   }, []);
 
   // Taskの追加
-  const addTaskListItem = (taskContent: string) => {
+  const addTaskListItem = (todoContent: string) => {
     //ulid()で一意のIdを取得
-    const newTaskItem = { id: ulid(), task: taskContent, done: false };
+    const newTaskItem = { id: ulid(), task: todoContent, done: false };
 
-    taskData.addTaskData(newTaskItem).then((addTask: Task) => {
+    taskData.addTaskData(newTaskItem).then((addTask:Task) => {
       setTaskList([addTask, ...taskList]);
     });
   };
