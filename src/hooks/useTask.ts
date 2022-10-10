@@ -16,16 +16,13 @@ export const useTask = () => {
   }, []);
 
   // Taskの追加
-  const addTaskListItem = (todoContent: string) => {
+  async function addTaskListItem(todoContent: string) {
     //ulid()で一意のIdを取得
     const newTaskItem = { id: ulid(), task: todoContent, done: false };
 
-    const addTaskData = async () => {
-      const data = await taskData.addTaskData(newTaskItem);
-      setTaskList([data, ...taskList]);
-    };
-    addTaskData();
-  };
+    const data = await taskData.addTaskData(newTaskItem);
+    setTaskList([data, ...taskList]);
+  }
 
   // 完了と未完了を反転させる
   const toggleTaskListItem = (id: string, done: boolean) => {
