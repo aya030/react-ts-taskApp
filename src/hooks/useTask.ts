@@ -35,14 +35,11 @@ export const useTask = () => {
   }
 
   //Taskの削除
-  const deleteTaskListItem = (id: string) => {
-    const deleteTaskData = async () => {
-      const data = await taskData.deleteTaskData(id);
-      const newTaskList = taskList.filter((item) => item.id !== data);
-      setTaskList(newTaskList);
-    };
-    deleteTaskData();
-  };
+  async function deleteTaskListItem(id: string) {
+    const data = await taskData.deleteTaskData(id);
+    const newTaskList = taskList.filter((item) => item.id !== data);
+    setTaskList(newTaskList);
+  }
 
   return { taskList, toggleTaskListItem, addTaskListItem, deleteTaskListItem };
 };
