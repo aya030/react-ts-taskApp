@@ -25,17 +25,14 @@ export const useTask = () => {
   }
 
   // 完了と未完了を反転させる
-  const toggleTaskListItem = (id: string, done: boolean) => {
+  async function toggleTaskListItem(id: string, done: boolean) {
     const taskItem = taskList.find((item: Task) => item.id === id);
     const newTaskItem: Task = { ...taskItem!, done: !done };
 
-    const updateTaskData = async () => {
-      const data = await taskData.updateTaskData(id, newTaskItem);
-      const newTaskList = taskList.map((item) => (item.id !== data.id ? item : data));
-      setTaskList(newTaskList);
-    };
-    updateTaskData();
-  };
+    const data = await taskData.updateTaskData(id, newTaskItem);
+    const newTaskList = taskList.map((item) => (item.id !== data.id ? item : data));
+    setTaskList(newTaskList);
+  }
 
   //Taskの削除
   const deleteTaskListItem = (id: string) => {
